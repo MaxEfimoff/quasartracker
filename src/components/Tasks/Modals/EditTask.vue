@@ -35,7 +35,18 @@ export default {
       if (!this.$refs.modalTaskName.$refs.name.hasError) {
         this.submitTask();
       }
-    }
+    },
+    submitTask() {
+			this.updateTask({
+				id: this.id,
+				updates: this.taskToSubmit
+			})
+			this.$emit('close')
+		},
+		clearDueDate() {
+			this.taskToSubmit.dueDate = ''
+			this.taskToSubmit.dueTime = ''
+		}
   },
   mounted() {
     this.taskToSubmit = Object.assign({}, this.task);
